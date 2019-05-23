@@ -1,0 +1,51 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.0",
+        "johnpbloch/wordpress": "^5.2",
+        "composer/installers": "^1.6",
+        "wpackagist-plugin/wordpress-seo": "^11.2"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "scripts"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "web/wp-content/mu-plugins/{$name}/": [
+                "type:wordpress-muplugin"
+            ],
+            "web/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "web/wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ],
+            "vendor/{$name}/": [
+                "type:tool"
+            ]
+        }
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "\\Composer\\ScriptHandler::prepareFolders"
+        ],
+        "post-install-cmd": [
+            "\\Composer\\ScriptHandler::createRequiredFiles",
+            "[ hash docker-compose 2>/dev/null ] || docker-compose up -d"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    }
+}

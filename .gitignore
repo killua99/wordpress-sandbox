@@ -1,0 +1,18 @@
+# Vendors
+
+!/web/
+/web/*
+/wordpress/*
+/vendor
+/logs
+
+# Customs plugins
+# !/web/wp-content/plugins/custom
+
+# Metas
+
+.DS_Store
+thumbnail
+.idea
+.vscode
+*.sublime-project
